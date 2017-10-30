@@ -124,22 +124,32 @@ echo "</table>";
 
 
  ?>
- <h2>削除フォーム</h2>
- <?php
- echo "申請を削除する場合はこちらから。";
+ <h2>DELETE / EDIT YOUR POST</h2>
+ <?php /*遷移先で処理する
+ echo "申請の削除はこちらから。</br>";
 
  $sql_del = 'delete from AccountingDataTb2 where id = :delete_id';
      $stmt_del = $pdo->prepare($sql_del);
-		 $params = array(':delete_id'=>3);
-     $flag = $stmt_del->execute(array(':delete_id' => 3));
+		 $params = array(':delete_id'=>2);
+     $flag = $stmt_del->execute($params);
 
  if ($flag){
 			 print('データの削除に成功しました<br>');
 	 }else{
 			 print("データの削除に失敗しました<br> ");
 	 }
-
+*/
   ?>
+	  <form action="delete_data_20171030.php" method="post">
+			<h3>DELETE / EDIT YOUR POST　</h3>
+<h4>（投稿の削除 / 編集)</h4>
+
+<form method="post" action="">
+           Delete the seleted id：<br />
+           <input type="number" name="NumberDel"> <input type="submit" name="delete" value="DELETE">
+       </form>
+       <br />
+
 </body>
 
 </html>
