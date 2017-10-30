@@ -1,6 +1,7 @@
 <html>
 <head>
 <title>reimbursement form</title>
+<link rel="stylesheet" type="text/css" href="display_style.css">
 </head>
 
 <h1>Reimbursement form 2017</h1>
@@ -14,6 +15,7 @@
 <p>
 	How much? :<br />
 	<input type = "number" name = "PostedMoney" size = "30" maxlength = "100">
+	YEN
 </p>
 <p>
 	For what?:<br />
@@ -54,6 +56,13 @@
 
 <h2>今までに申請された経費は以下の通りです。</h2>
 <?php
+
+$DataBase = 'mysql:host=localhost;dbname=AccountingDB;charset=utf8';
+$user = "root";
+$password = "root";
+/*try内でやる
+$mysql_INfO = new PDO ($DataBase, $user, $password );
+ */
 try {
 $pdo = new PDO('mysql:host=localhost;dbname=AccountingDB;charset=utf8','root','root',
 array(PDO::ATTR_EMULATE_PREPARES => false));
@@ -67,13 +76,70 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 $sql = "SELECT * FROM AccountingDataTb2";
 $stmh = $pdo->prepare($sql);
 $stmh->execute();
-$rows = $stmh->fetchAll();
-for ($i=0; $i < 5 ; $i++) {
-	# code...
-	echo "$rows[$i]";
+//$rows = $stmh->fetchAll();
+echo "<table>";
+echo "<tr>";
+
+$ArrayDisplay= array('id', 'name', 'amount of money', 'purpose', 'place to purchase', 'purchase date', 'purchase month', 'regestered date');
+$NumArrayDisplay = count($ArrayDisplay);
+/*使うまで放置
+$NumDispay = 20;
+echo "最新$NumDispay 件の申請を表示します。";*/
+for ($i=0; $i < $NumArrayDisplay  ; $i++) {
+
+	echo "<td>$ArrayDisplay[$i]</td>";
 }
-var_dump ($rows);
+echo "</tr>";
+
+while($rows = $stmh->fetch(PDO::FETCH_ASSOC)){
+
+echo "<tr>";
+	foreach ($rows as $key) {
+		echo "<td>$key</td>";
+		# code...
+	}
+echo "</tr>";
+}
+
+/*なぜか二重に取得されるのでわかるまで放置。
+for ($i=0; $i < $NumArrayDisplay  ; $i++) {
+
+	echo "<td>$ArrayDisplay[$i]</td>";
+}
+echo "</tr>";
+
+echo "<tr>";
+foreach ($rows as $key) {
+
+
+	foreach ($key as $key2) {
+
+		echo "$key2";
+
+	}
+}
+*/
+echo "</tr>";
+echo "</table>";
+
+
  ?>
+ <h2>削除フォーム</h2>
+ <?php
+ echo "申請を削除する場合はこちらから。";
+
+ $sql_del = 'delete from AccountingDataTb2 where id = :delete_id';
+     $stmt_del = $pdo->prepare($sql_del);
+		 $params = array(':delete_id'=>3);
+     $flag = $stmt_del->execute(array(':delete_id' => 3));
+
+ if ($flag){
+			 print('データの削除に成功しました<br>');
+	 }else{
+			 print("データの削除に失敗しました<br> ");
+	 }
+
+  ?>
 </body>
 
 </html>
