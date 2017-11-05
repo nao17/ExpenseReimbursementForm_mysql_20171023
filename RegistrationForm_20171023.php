@@ -146,8 +146,12 @@ echo "</table>";
 <h4>（投稿の削除 / 編集)</h4>
 
 <form method="post" action="">
-           Delete the seleted id：<br />
+           Delete the seleted post：<br />
            <input type="number" name="NumberDel"> <input type="submit" name="delete" value="DELETE">
+				 </form>
+<form method="post" action="edit_data_20171030.php">
+					 Edit the seleted post：<br />
+           <input type="number" name="NumberEdit"> <input type="submit" name="edit" value="Edit">
        </form>
        <br />
 

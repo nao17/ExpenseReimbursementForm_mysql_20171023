@@ -8,6 +8,10 @@
 <h2>Edit register screen</h2>
 
 <?php
+//遷移したら最初にidを格納
+$postid1 = $_POST['NumberEdit'];
+
+//サーバーに接続
 echo "Connecting to database... </br>";
 try {
 $pdo = new PDO('mysql:host=localhost;dbname=AccountingDB;charset=utf8','root','root',
@@ -20,13 +24,15 @@ $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 ?>
 
 <?php
+//テーブル情報をmysqlより取得
 $sql = "SELECT * FROM AccountingDataTb2";
 $stmh = $pdo->prepare($sql);
 $stmh->execute();
 //$rows = $stmh->fetchAll();
+
+//取得した情報をテーブル表示
 echo "<table>";
 echo "<tr>";
-
 $ArrayDisplay= array('id', 'name', 'amount of money', 'purpose', 'place to purchase', 'purchase date', 'purchase month', 'registered date');
 $NumArrayDisplay = count($ArrayDisplay);
 /*使うまで放置
@@ -52,7 +58,8 @@ echo "</tr>";
 <?php
 
 if (isset($_POST["Edit"])){
-
+  //編集情報を受け取って格納
+  $StoredEid = $_POST['Editedid'];
   $StoredEName = $_POST['EditedName'];
   $storedEMoney = $_POST['EditedMoney'];
   $storedEPurpose = $_POST['EditedPurpose'];
@@ -60,15 +67,11 @@ if (isset($_POST["Edit"])){
   $StoredEDate = $_POST['EditedDate'];
   $StoredEMonth = $_POST['EditedMonth'];
 
-echo "if文と格納チェック：$StoredEName";
-
-  $sql2 =  "update AccountingDataTb2 set name =:edit_name, money =:edit_money, purpose = :edit_purpose, place = :edit_place, month= :edit_month, date=:edit_date where id = 1" ;
-
-$ArrayPDOedit = array(':edit_name' =>$StoredEName, ':edit_money' => $storedEMoney ,':edit_purpose' => $storedEPurpose, 'edit_place' => $StoredEPlace, ':edit_month' =>  $StoredEMonth, 'edit_date' => $StoredEDate);
-
-var_dump($ArrayPDOedit);
+  $sql2 =  "update AccountingDataTb2 set name =:edit_name, money =:edit_money, purpose = :edit_purpose, place = :edit_place, month= :edit_month, date=:edit_date where id = :id" ;
+  $ArrayPDOedit = array(':edit_name' =>$StoredEName, ':edit_money' => $storedEMoney ,':edit_purpose' => $storedEPurpose, 'edit_place' => $StoredEPlace, ':edit_month' =>  $StoredEMonth, 'edit_date' => $StoredEDate, 'id' => $StoredEid);
+//$ArrayPDOeditID = array(':id' => $StoredEid);
   $stmt = $pdo -> prepare($sql2);
-
+  //$stmt->bindValue(':id', $StoredEid);
 
 /*
   $stmt->bindValue(":edit_name", "$StoredEName");
@@ -86,6 +89,10 @@ echo "stmt文のexcute前チェック$stmt";*/
 ?>
 
 <form method = "POST" action = "">
+  <p>
+  	id :<br />
+  	<input type = "number" name = "Editedid" size = "30" maxlength = "100" value="<?= $postid1 ?>">
+  </p>
 <p>
 	 Name:<br />
 	<input type = "text" name = "EditedName" size = "30" maxlength = "200">
