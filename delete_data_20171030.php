@@ -28,9 +28,9 @@ if (isset($_POST['delete']))
       $flag = $stmt_del->execute($params);
 
   if ($flag){
- 			 print('データの削除に成功しました<br>');
+ 			 echo "COMPELETED! Successfully we delete id $StoredNumberDel<br>";
  	 }else{
- 			 print("データの削除に失敗しました<br> ");
+ 			 print("We faili to delete it. Please try again.<br> ");
  	 }}
 
    ?>
@@ -52,9 +52,9 @@ if (isset($_POST['delete']))
 
  */?>
 
- 登録完了！
 
- 経費申請を続ける場合は<a href="http://localhost/ReimbursementForm/RegistrationForm_20171023.php">こちら</a>
- 
+
+Continue from: <a href="http://localhost/ReimbursementForm/RegistrationForm_20171023.php">こちら</a>
+
  </body>
  </html>

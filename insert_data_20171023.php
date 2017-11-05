@@ -1,3 +1,13 @@
+<html>
+<head>
+<title>reimbursement form</title>
+<link rel="stylesheet" type="text/css" href="display_style.css">
+</head>
+
+<h1>Reimbursement system</h1>
+<h2>inserted data</h2>
+
+
 <?php
 
 
@@ -11,15 +21,30 @@ $storedPurpose = $_POST['PostedPurpose'];
 $StoredPlace = $_POST['PostedPlace'];
 $StoredDate = $_POST['PostedDate'];
 $StoredMonth = $_POST['PostedMonth'];
+$arrayStored = array($StoredName, $storedMoney, $storedPurpose, $StoredPlace, $StoredMonth, $StoredDate);
 //$timestamp = date("Y/m/d H:i:s");
 echo "<h2>以下の内容が申請されました。</h2>";
-echo "$StoredName ";
-echo "$storedMoney ";
-echo "$storedPurpose ";
-echo "$StoredPlace ";
-echo "$StoredDate  ";
-echo "$StoredMonth  ";
 
+echo "<table>";
+echo "<tr>";
+
+$ArrayDisplay= array('name', 'amount of money', 'purpose', 'place to purchase', 'purchase date', 'purchase month');
+$NumArrayDisplay = count($ArrayDisplay);
+/*使うまで放置
+$NumDispay = 20;
+echo "最新$NumDispay 件の申請を表示します。";*/
+for ($i=0; $i < $NumArrayDisplay  ; $i++) {
+
+	echo "<td>$ArrayDisplay[$i]</td>";
+}
+echo "</tr>";
+echo "<tr>";
+for ($i=0; $i < $NumArrayDisplay  ; $i++) {
+
+	echo "<td>$arrayStored[$i]</td>";
+}
+echo "</tr>";
+echo "</table>";
 
     //DBに接続
 try {

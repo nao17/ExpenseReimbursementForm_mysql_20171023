@@ -1,10 +1,11 @@
 <html>
 <head>
-<title>reimbursement form</title>
+<title>reimbursement system</title>
 <link rel="stylesheet" type="text/css" href="display_style.css">
 </head>
 
-<h1>Reimbursement form 2017</h1>
+<h1>Reimbursement system</h1>
+<h2>Register form 2017</h2>
 
 <body>
 <form method = "POST" action = "insert_data_20171023.php">
@@ -38,9 +39,9 @@
 <option value=2>Feb</option>
 <option value=3>Mac</option>
 <option value=4>Apr</option>
-<option value=5>Feb</option>
-<option value=6>Mac</option>
-<option value=7>Jan</option>
+<option value=5>May</option>
+<option value=6>Jun</option>
+<option value=7>July</option>
 <option value=8>Aug</option>
 <option value=9>Sep</option>
 <option value=10>Oct</option>
