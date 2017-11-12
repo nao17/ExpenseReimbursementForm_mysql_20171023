@@ -1,9 +1,6 @@
 <?php
-session_start();
+session_start();?>
 
-
-
- ?>
  <html>
  <head>
  <title>メイン画面</title>
@@ -11,18 +8,30 @@ session_start();
  <meta http-equiv="content-type" charset="utf-8">
  </head>
 
+ <header>
+ 	<h1>Reimbursement system</h1>
+  </header>
+
+  <div id = 'pageTitle'>
+  <p>personalised page </p>
+  </div>
+
+
      <body>
+       <section>
+         <p>
          <h1>マイページ</h1>
          <!-- ユーザーIDにHTMLタグが含まれても良いようにエスケープする -->
-         <p>ようこそ<u><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?></u>さん</p>  <!-- ユーザー名をechoで表示 -->
-
-         <ul>
-             <li><a href="RegistrationForm_20171023.php">経費の新規申請フォーム</a></li>
-
-             <li><a href="edit_data_20171030.php">経費の編集フォーム</a></li>
-         </ul>
+         ようこそ<u><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?></u>さん <!-- ユーザー名をechoで表示 -->
 
 
+           <nav>
+                    <ul>
+                        <li><a href="RegistrationForm_20171023.php">経費の新規申請</a></li>
+                        <li><a href="deleteForm_20171112.php">申請の削除</a></li>
+                        <li><a href="edit_data_20171030.php">申請の編集</a></li>
+                    </ul>
+           </nav>
          <?php
          try {
          $pdo = new PDO('mysql:host=localhost;dbname=AccountingDB;charset=utf8','root','root',
@@ -62,8 +71,8 @@ session_start();
          echo "</tr>";
        }
       ?>
-
-
+    </p>
+    </section>
 
          <ul>
              <li><a href="logout_20171112.php">ログアウト</a></li>

@@ -1,8 +1,21 @@
+<?php
+session_start();?>
+
 <html>
 <head>
 <title>reimbursement form</title>
 <link rel="stylesheet" type="text/css" href="display_style.css">
 </head>
+
+
+<header>
+	<h1>Reimbursement system</h1>
+		<p><u><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?></u>さんとしてログインしています。</p>
+<ul>
+		<li><a href="main.php">マイページ</a>に戻る</li>
+</ul>
+
+</header>
 
 <h1>Reimbursement system</h1>
 <h2>Edit register screen</h2>

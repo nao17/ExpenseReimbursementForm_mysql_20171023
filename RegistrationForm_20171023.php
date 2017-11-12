@@ -1,3 +1,6 @@
+<?php
+session_start();?>
+
 <html>
 <head>
 <title>reimbursement system</title>
@@ -5,8 +8,20 @@
 <meta http-equiv="content-type" charset="utf-8">
 </head>
 
-<h1>Reimbursement system</h1>
-<h2>Register form 2017</h2>
+<header>
+	<h1>Reimbursement system</h1>
+
+
+		<p><u><?php echo htmlspecialchars($_SESSION["NAME"], ENT_QUOTES); ?></u>さんとしてログインしています。</p>
+<ul>
+		<li><a href="main.php">マイページ</a>に戻る</li>
+</ul>
+
+</header>
+
+<div id = 'pageTitle'>
+<p>Register form 2017</p>
+</div>
 
 <body>
 <form method = "POST" action = "insert_data_20171023.php">
@@ -142,11 +157,12 @@ echo "</table>";
 	 }
 */
   ?>
-	  <form action="delete_data_20171030.php" method="post">
+	<!--
+	  <form action="delete_data_20171030.php" method="post"> -->
 			<h3>DELETE / EDIT YOUR POST　</h3>
 <h4>（投稿の削除 / 編集)</h4>
 
-<form method="post" action="">
+<form method="post" action="delete_data_20171030.php">
            Delete the seleted post：<br />
            <input type="number" name="NumberDel"> <input type="submit" name="delete" value="DELETE">
 				 </form>
