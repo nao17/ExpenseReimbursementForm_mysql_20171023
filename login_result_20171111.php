@@ -1,5 +1,8 @@
 <?php
 
+// セッション開始
+session_start();
+
 if (isset($_POST["login" ])) {
 
   if (empty($_POST["userid" ])) {  // emptyは値が空のとき
@@ -32,10 +35,11 @@ $stmt_pass_login -> execute($Array_userid);
 while($rows_pass_login = $stmt_pass_login->fetch(PDO::FETCH_ASSOC)){
   //var_dump($rows_pass_login);
   if (password_verify($password,  $rows_pass_login['password' ])) {
-    $key_pass_login_name =  $key_pass_login['name'] ;
+    $_SESSION["NAME" ]  =  $rows_pass_login['name'] ;
+
   //  var_dump($rows_pass_login['password']);
 
-    header("Location: RegistrationForm_20171023.php");
+    header("Location: main.php");
 
     exit();
 
