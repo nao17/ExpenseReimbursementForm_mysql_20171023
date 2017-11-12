@@ -63,10 +63,10 @@ session_start();
        }
       ?>
 
-      
+
 
          <ul>
-             <li><a href="Logout.php">ログアウト</a></li>
+             <li><a href="logout_20171112.php">ログアウト</a></li>
          </ul>
      </body>
  </html>
