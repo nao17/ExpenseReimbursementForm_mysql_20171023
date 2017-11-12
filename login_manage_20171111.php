@@ -18,7 +18,7 @@
             </fieldset>
         </form>
         <br>
-        <form action="SignUp.php" >
+        <form action="signup_20171112.php" >
             <fieldset>
                 <legend>新規登録フォーム</legend>
                 <input type="submit"  value="新規登録" >

@@ -10,7 +10,7 @@
 <?php
 //遷移したら最初にidを格納
 $postid1 = $_POST['NumberEdit'];
-
+echo "$postid1 ";
 //サーバーに接続
 echo "Connecting to database... </br>";
 try {
@@ -67,8 +67,8 @@ if (isset($_POST["Edit"])){
   $StoredEDate = $_POST['EditedDate'];
   $StoredEMonth = $_POST['EditedMonth'];
 
-  $sql2 =  "update AccountingDataTb2 set name =:edit_name, money =:edit_money, purpose = :edit_purpose, place = :edit_place, month= :edit_month, date=:edit_date where id = :id" ;
-  $ArrayPDOedit = array(':edit_name' =>$StoredEName, ':edit_money' => $storedEMoney ,':edit_purpose' => $storedEPurpose, 'edit_place' => $StoredEPlace, ':edit_month' =>  $StoredEMonth, 'edit_date' => $StoredEDate, 'id' => $StoredEid);
+  $sql2 =  "update AccountingDataTb2 set name =:edit_name, money =:edit_money, purpose = :edit_purpose, place = :edit_place, month= :edit_month, date=:edit_date where id = :edit_id" ;
+  $ArrayPDOedit = array(':edit_name' =>$StoredEName, ':edit_money' => $storedEMoney ,':edit_purpose' => $storedEPurpose, 'edit_place' => $StoredEPlace, ':edit_month' =>  $StoredEMonth, 'edit_date' => $StoredEDate, 'edit_id' => $StoredEid);
 //$ArrayPDOeditID = array(':id' => $StoredEid);
   $stmt = $pdo -> prepare($sql2);
   //$stmt->bindValue(':id', $StoredEid);
@@ -85,6 +85,27 @@ echo "stmt文のexcute前チェック$stmt";*/
   $stmt->execute($ArrayPDOedit );
 
 }
+//フォーム内に表示用のsql
+//テスト用 $sql_display= 'select * from AccountingDataTb2 where id =1';
+$sql_display= 'select * from AccountingDataTb2 where id =:display_id';
+$ArrayPDOedit_display = array(':display_id'=>$postid1);
+$stmt_display = $pdo -> prepare($sql_display);
+$stmt_display -> execute($ArrayPDOedit_display );
+
+while($rows_display = $stmt_display->fetch(PDO::FETCH_ASSOC)){
+  foreach ($rows_display as $key_display) {
+    var_dump($key_display);
+    echo "$key_display";
+
+		}
+  }
+
+  /*for ($i=0; $i <$NumArrayDisplay ; $i++) {
+    # code...
+    echo "$rows_display[$i] ";*/
+
+
+//$rows_display = $stmt_display->fetch(PDO::FETCH_ASSOC;
 
 ?>
 

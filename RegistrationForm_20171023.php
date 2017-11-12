@@ -2,6 +2,7 @@
 <head>
 <title>reimbursement system</title>
 <link rel="stylesheet" type="text/css" href="display_style.css">
+<meta http-equiv="content-type" charset="utf-8">
 </head>
 
 <h1>Reimbursement system</h1>

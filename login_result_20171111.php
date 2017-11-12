@@ -57,26 +57,7 @@ while($rows_pass_login = $stmt_pass_login->fetch(PDO::FETCH_ASSOC)){
 
 		}
   }
-/*
-
-stmt = $pdo->prepare('SELECT * FROM userData WHERE name = ?' );
-$stmt->execute(array($userid));
-
-if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-    if (password_verify($password, $row['password' ])) {
-
-
-        // 入力したIDのユーザー名を取得 $id = $row['name' ];
-        $sql = "SELECT * FROM userData WHERE name = $userid" ;  //入力したIDからユーザー名を取得
-        $stmt = $pdo->query($sql);
-        foreach ($stmt as $row) {
-            $row['name' ];  // ユーザー名
-        }
-        $userid = $row['name' ];
-        echo "一致しました";
-      //  header("Location: Main.php" );  // メイン画面へ遷移
-        exit();  // 処理終了
-*/ }
+ }
 
 
 
